@@ -1,0 +1,34 @@
+{% extends 'navbar/mainnavbar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Blogs</title>
+</head>
+<body>
+{% block body%}
+
+<div class="container mt-5">
+    <div class="row">
+        {% for BlogDetails in blog_details_list %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ BlogDetails.blogtitle}}</h5>
+                    <p class="card-text">Blog Type: {{ BlogDetails.get_blogtype_display }}</p>
+                    <p class="card-text">Description: {{ BlogDetails.description }}</p>
+                    <p class="card-text">Location: {{ BlogDetails.location }}</p>
+                    <p class="card-text">Bloggerdetails: {{ BlogDetails.bloggerdetails }}</p>
+
+                    <a href="{% url 'mainapp:edit_blog_details' BlogDetails.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'mainapp:delete_blog_details' BlogDetails.id %}" class="btn btn-primary">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+</body>
+</html>

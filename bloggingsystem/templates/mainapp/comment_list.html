@@ -1,0 +1,45 @@
+{% extends 'navbar/mainnavbar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Comments</title>
+</head>
+
+<body>
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Comments</h5>
+            <table class="table" border="2">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for comment in blog.comments.all %}
+                    <tr>
+                        <td>{{ comment.name }}</td>
+                        <td>{{ comment.message }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="2">No comments yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<style>
+    table, th, td{
+    border:2px solid black;
+    }
+</style>
+{% endblock %}
+</html>

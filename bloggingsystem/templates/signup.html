@@ -1,0 +1,82 @@
+{% extends 'navbar/projectnavbar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+
+{% block body%}
+{% if messages %}
+{% for message in messages %}
+{% if message.tags %}
+<script>alert ("{{message}}")</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+<style>
+    .container1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Use the full height of the viewport */
+    }
+
+    .bodycontainer {
+        width: 500px; /* Set the width of the form container */
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Optional styling for the form elements */
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 100%;
+        padding: 8px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="container1">
+    <div class = 'bodycontainer'>
+        <h1>Register Page</h1>
+        <form method="post" action="{% url 'signup1' %}">
+            {% csrf_token %}
+            <label>Username</label>
+            <input type="text" name="username" pattern="[a-zA-Z][a-zA-Z0-9_]*" title="Username must start with a letter and can only contain letters, numbers, and underscores" placeholder="Enter username"><br><br>
+            <label>Email</label>
+            <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Enter a valid email address" placeholder="Eg: abc@gmail.com"><br><br>
+            <label>Password</label>
+            <input type="password" name="password" minlength="8" required placeholder="Enter password"><br><br>
+            <label>Confirm Password</label>
+            <input type="password" name="password1" minlength="8" required placeholder="Confirm password"><br><br>
+            <button type="submit" name="SUBMIT">Submit</button>
+
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

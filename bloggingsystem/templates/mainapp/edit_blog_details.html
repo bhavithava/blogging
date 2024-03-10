@@ -1,0 +1,59 @@
+{% extends 'navbar/mainnavbar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+
+{% block body%}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <form method="post" action="#">
+                    {% csrf_token %}
+                    <h1 align="center">Edit Blog</h1>
+                    <div class="form-group">
+                        <label for="blogtitle">Blog Title</label><br>
+                        <input type="text" class="form-control" name="blogtitle" value="{{ blog_details.blogtitle}}" required><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="blogtype">Blog Type</label><br>
+                        <select class="form-control" name="blogtype" required>
+                            <option value="Food Blogs" {% if blog_details.blogtype == 'Food Blogs' %}selected{% endif %}> Food Blogs </option>
+                            <option value="Travel Blogs" {% if blog_details.blogtype == 'Travel Blogs' %}selected{% endif %}> Travel Blogs </option>
+                            <option value="Pets Blogs" {% if blog_details.blogtype == 'Pets Blogs' %}selected{% endif %}> Pets Blogs </option>
+                        </select><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label><br>
+                        <input type="text" class="form-control" name="description" value="{{ blog_details.description}}" required><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location</label><br>
+                        <input type="text" class="form-control" name="location" value="{{ blog_details.location}}" required><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bloggerdetails">Blogger Details</label><br>
+                        <input type="text" class="form-control" name="bloggerdetails" value="{{ blog_details.bloggerdetails}}" required><br>
+                    </div>
+
+                    <div class="text-center"> <!-- Aligns the button to the center -->
+                        <button type="submit" class="btn btn-primary">update</button>
+                    </div><br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+</body>
+</html>
